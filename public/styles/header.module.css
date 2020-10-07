@@ -1,0 +1,28 @@
+.separator {
+    border-left: 2px solid #bbb;
+    min-height: 100%;
+    margin: 0 10px;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+}
+
+.accountName {
+    margin: 0 10px;
+    font-family: 'Open Sans';
+    color: #333;
+}
+
+.accountIcon {
+    color: #662d91;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.text {
+    font-family: 'Open Sans';
+    margin: 0 10px;
+    color: #333;
+}

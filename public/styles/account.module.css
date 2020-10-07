@@ -1,0 +1,128 @@
+.accountContainer {
+    margin: 50px 0 10px;
+    background-color: #1a78c2;
+    border-radius: 5px;
+    padding: 20px 10px;
+}
+
+.accountNameContainer {
+    display: flex;
+    align-items: center;
+}
+
+.accountCircle {
+    font-size: 64px !important;
+    color: #662d91;
+    margin-right: 30px;
+    margin-left: 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.accountName {
+    font-size: 32px;
+    font-family: 'Open Sans';
+    color: #fff;
+}
+
+.edit {
+    justify-self: end;
+    font-size: 16px;
+    font-family: 'Open Sans';
+    color: #fff;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.accountInfoContainer {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 50px 0 0 0 !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 100% !important;
+}
+
+.accountInfoBlock {
+    display: flex;
+    align-items: center;
+}
+
+.accountIcon {
+    color: #03c0a6;
+    margin: 30px;
+}
+
+.accountInfoText {
+    color: #555;
+    font-family: 'Open Sans';
+}
+
+.field {
+    width: 280px;
+    height: 50px;
+    margin: 10px 0 !important;
+}
+
+.fieldInput {
+    height: 80px;
+}
+
+.fieldBlock {
+    display: flex;
+    align-items: center;
+}
+
+.separator {
+    border-left: 1px solid #cae7fe;
+    height: 100%;
+    display: inline-block;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.button {
+    background-color: #03c0a6 !important;
+    border-radius: 27px !important;
+    color: white !important;
+    padding: 13px !important;
+}
+
+.confirmBg {
+    position: fixed;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left:0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
+.confirmBlock {
+    color: #555;
+    background-color: #fff;
+    padding: 40px 50px;
+    margin: 20px 0;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #555;
+    font-size: 18px;
+    cursor: pointer;
+}
