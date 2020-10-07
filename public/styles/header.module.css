@@ -1,3 +1,12 @@
+.headerDiv {
+    padding-top: 15px;
+} 
+
+.notificationIcon {
+    color: #fff;
+    font-size: large;
+}
+
 .separator {
     border-left: 2px solid #bbb;
     min-height: 100%;
@@ -19,10 +28,44 @@
     color: #662d91;
     background-color: white;
     border-radius: 50%;
+    font-size: large;
+}
+
+.headerText {
+    font-family: 'Open Sans';
+    margin: 0 10px;
+    color: #333;
+    font-size: large;
 }
 
 .text {
     font-family: 'Open Sans';
     margin: 0 10px;
     color: #333;
+}
+
+@media(max-width: 720px) {
+    .accountName {
+        display: none;
+    }
+
+    .headerDiv {
+        padding-top: 2px;
+    }
+
+    .notificationIcon {
+        font-size: 12px;
+    }
+
+    .accountIcon {
+        font-size: 12px;
+    }
+
+    .headerText {
+        font-size: medium;
+    }
+
+    .text {
+        font-size: 12px;
+    }
 }

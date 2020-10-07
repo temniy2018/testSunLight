@@ -37,27 +37,25 @@ class Account extends React.Component {
 
     handleChange(e) {
         const name = e.target.id;
-        this.setState({[name]: e.target.value}, () => {
-            if(name === 'name') {
-                this.setState({isNameError: this.state.name && this.state.name.indexOf(' ') !== -1 ? false : true});
-            }
-            if(name === 'email') {
-                const reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                this.setState({isEmailError: this.state.email.match(reEmail) ? false : true});
-            }
-            if(name === 'num') {
-                const reNum = /^\d[\d\(\)\ -]{4,14}\d$/;
-                this.setState({isNumError: this.state.num.match(reNum) ? false : true});
-            }
-        });
+        if(name === 'name') {
+            this.setState({isNameError: e.target.value && e.target.value.indexOf(' ') !== -1 ? false : true});
+        }
+        if(name === 'email') {
+            const reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            this.setState({isEmailError: e.target.value.match(reEmail) ? false : true});
+        }
+        if(name === 'num') {
+            const reNum = /^\d[\d\(\)\ -]{4,14}\d$/;
+            this.setState({isNumError: e.target.value.match(reNum) ? false : true});
+        }
     }
 
     openConfirm() {
-        if(this.state.name && this.state.email 
-            && this.state.num && !this.state.isEmailError 
-            && !this.state.isNameError && !this.state.isNumError) {
+        if(!this.state.isEmailError && !this.state.isNameError && !this.state.isNumError) {
+                if(document.getElementById('name').value && document.getElementById('email').value && document.getElementById('num').value)
                 this.setState({isConfirmOpen: true})
             }
+            console.log(document.getElementById('name').id);
     }
 
     close() {
@@ -65,39 +63,46 @@ class Account extends React.Component {
     }
 
     async handleSubmit() {
-        localStorage.setItem('name', this.state.name);
-        localStorage.setItem('email', this.state.email);
-        localStorage.setItem('num', this.state.num);
-        this.setState({isSuccessOpen: true, isConfirmOpen: false});
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-token-access': 'random' },
-            body: JSON.stringify({
-                name: this.state.name,
-                email: this.state.email,
-                num: this.state.num
-             })
-        };
-        fetch('https://jsonplaceholder.typicode.com/posts', requestOptions)
-            .then(response => response.json())
-        this.props.getName(this.state.name);
+        this.setState({
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            num: document.getElementById('num').value
+        }, () => {
+            localStorage.setItem('name', this.state.name);
+            localStorage.setItem('email', this.state.email);
+            localStorage.setItem('num', this.state.num);
+            this.setState({isSuccessOpen: true, isConfirmOpen: false});
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'x-token-access': 'random' },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    email: this.state.email,
+                    num: this.state.num
+                 })
+            };
+            fetch('https://jsonplaceholder.typicode.com/posts', requestOptions)
+                .then(response => response.json())
+            this.props.getName(this.state.name);
+        })
     }
 
     render() {
+        
         return (
             <React.Fragment>
                 <Grid container alignItems="center" justify="space-between" className={s.accountContainer}>
                     <div className={s.accountNameContainer}>
                         <AccountCircleIcon className={s.accountCircle} />
-                        <span className={s.accountName}>{localStorage.getItem('name')}</span>
+                        <span className={s.accountName}>{this.state.name}</span>
                     </div>
                     {!this.state.isEditing ? (
                     <span className={s.edit} onClick={() => this.setState({isEditing: true})}>
-                        Редактировать<EditIcon style={{marginLeft: '10px'}}/>
+                        <span className={s.editMobile}>Редактировать</span><EditIcon style={{marginLeft: '10px'}}/>
                     </span>
                     ) : (
                     <span className={s.edit} onClick={() => this.setState({isEditing: false})}>
-                        Закрыть<CloseIcon style={{marginLeft: '10px'}}/>
+                        <span className={s.editMobile}>Закрыть</span><CloseIcon style={{marginLeft: '10px'}}/>
                     </span>
                     )}
                 </Grid>
@@ -105,18 +110,18 @@ class Account extends React.Component {
                 {!this.state.isEditing ? (
                 <div className={s.accountInfoContainer}>
                     <div className={s.accountInfoBlock}>
-                        <AlternateEmailIcon fontSize="large" className={s.accountIcon}/>
-                        <span className={s.accountInfoText}>{localStorage.getItem('email')}</span>
+                        <AlternateEmailIcon fontSize="large" className={s.accountInfoIcon}/>
+                        <span className={s.accountInfoText}>{this.state.email}</span>
                     </div>
                     <hr />
                     <div className={s.accountInfoBlock}>
-                        <PhoneIcon fontSize="large" className={s.accountIcon}/>
-                        <span className={s.accountInfoText}>{localStorage.getItem('num') || 'Укажите номер телефона'}</span>
+                        <PhoneIcon fontSize="large" className={s.accountInfoIcon}/>
+                        <span className={s.accountInfoText}>{this.state.num || 'Укажите номер телефона'}</span>
                     </div>
                 </div>
                 ) : (
                     <Grid container spacing={2} className={s.accountInfoContainer}>
-                        <Grid item xs={4} justify="space-between" style={{display: 'flex'}}>
+                        <Grid item sm={4} xs={12} justify="space-between" style={{display: 'flex'}}>
                             <div className={s.fieldBlock}>
                                 <AssignmentIndIcon fontSize="large" className={s.accountIcon} />
                                 <TextField
@@ -138,7 +143,7 @@ class Account extends React.Component {
                             </div>
                             <div className={s.separator} />
                         </Grid>
-                        <Grid item xs={4} justify="space-between" style={{display: 'flex'}}>
+                        <Grid item sm={4} xs={12} justify="space-between" style={{display: 'flex'}}>
                             <div className={s.fieldBlock}>
                                 <AlternateEmailIcon fontSize="large" className={s.accountIcon} />
                                 <TextField
@@ -160,7 +165,7 @@ class Account extends React.Component {
                             </div>
                             <div className={s.separator} />
                         </Grid>
-                        <Grid item xs={4} className={s.fieldBlock}>
+                        <Grid item sm={4} xs={12} className={s.fieldBlock}>
                             <PhoneIcon fontSize="large" className={s.accountIcon} />
                             <TextField
                                 id="num"
@@ -198,7 +203,7 @@ class Account extends React.Component {
                         </div>
                     ) : null}
                     {this.state.isSuccessOpen ? (
-                        <div className={s.confirmBlock}>
+                        <div className={s.confirmBlock} style={{padding: '30px 40px'}}>
                             <h3>Данные успешно сохранены</h3>
                             <div className={s.buttonContainer}>
                                     <Button variant="contained" className={s.button} onClick={() => this.close()}>Хорошо</Button>

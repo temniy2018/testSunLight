@@ -32,6 +32,7 @@ export default class Home extends React.Component {
         </Head>
 
         <img src='/img/head.jpg' className={s.bg}/>
+        <img src='/img/headMobile.png' className={s.mobileBg}/>
 
         <div style={{padding: "15px"}}>
           <Header name={this.state.name} />
