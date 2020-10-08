@@ -93,7 +93,7 @@ class Account extends React.Component {
             <React.Fragment>
                 <Grid container alignItems="center" justify="space-between" className={s.accountContainer}>
                     <div className={s.accountNameContainer}>
-                        <AccountCircleIcon className={s.accountCircle} />
+                        <img src='/img/accountIcon.png' className={s.accountCircle} />
                         <span className={s.accountName}>{this.state.name}</span>
                     </div>
                     {!this.state.isEditing ? (
@@ -203,11 +203,12 @@ class Account extends React.Component {
                         </div>
                     ) : null}
                     {this.state.isSuccessOpen ? (
-                        <div className={s.confirmBlock} style={{padding: '30px 40px'}}>
+                        <div className={s.confirmBlockSuccess} style={{padding: '30px 40px'}}>
                             <h3>Данные успешно сохранены</h3>
-                            <div className={s.buttonContainer}>
+                            <div className={s.buttonContainerSuccess}>
                                     <Button variant="contained" className={s.button} onClick={() => this.close()}>Хорошо</Button>
                             </div>
+                            <div className={s.mobileClose} onClick={() => this.close()}/>
                     </div>
                     ) : null}
                 </div>

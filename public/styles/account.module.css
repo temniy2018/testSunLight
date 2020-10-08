@@ -12,12 +12,10 @@
 }
 
 .accountCircle {
-    font-size: 64px !important;
-    color: #662d91;
     margin-right: 30px;
     margin-left: 10px;
-    background-color: white;
     border-radius: 50%;
+    width: 64px;
 }
 
 .accountName {
@@ -95,6 +93,13 @@
     width: 100%;
 }
 
+.buttonContainerSuccess {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
 .button {
     background-color: #03c0a6 !important;
     border-radius: 27px !important;
@@ -125,6 +130,16 @@
     font-family: 'Open Sans';
 }
 
+.confirmBlockSuccess {
+    color: #555;
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    position: relative;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
 .close {
     position: absolute;
     top: 10px;
@@ -134,13 +149,17 @@
     cursor: pointer;
 }
 
+.mobileClose {
+    display: none;
+}
+
 @media(max-width: 720px) {
     .accountContainer {
         margin: 10px 0;
     }
 
     .accountCircle {
-        font-size: 34px !important;
+        width: 34px !important;
         margin-right: 5px;
     }
 
@@ -175,6 +194,26 @@
         border-radius: 8px 8px 0 0;
         width: 100%;
     }
+
+    .confirmBlockSuccess {
+        padding: 0;
+        margin: 0;
+        border-radius: 8px 8px 0 0;
+        width: 100%;
+    }
+
+    .confirmBlockSuccess h3 {
+        margin: 5px 0;
+    }
+
+    .mobileClose {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 }
 
 @media(max-width: 910px) {
@@ -184,6 +223,10 @@
 
     .fieldBlock {
         width: 100%;
+    }
+
+    .buttonContainerSuccess {
+        display: none;
     }
 }
 

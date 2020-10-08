@@ -8,11 +8,11 @@ class Header extends React.Component {
     render() {
         return (
             <div className={s.headerDiv}>
-                <Grid container justify="flex-end">
+                <Grid container justify="flex-end" alignItems="center">
                     <NotificationsNoneIcon className={s.notificationIcon} />
                     <div className={s.separator} />
                     <div className={s.account}>
-                        <AccountCircleIcon className={s.accountIcon} />
+                        <img src="/img/accountIcon.png" className={s.accountIcon} />
                         <span className={s.accountName}>{this.props.name}</span>
                     </div>    
                 </Grid>
